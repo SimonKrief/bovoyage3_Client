@@ -3,6 +3,7 @@ package fr.gtm.bo;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Destination {
 
 	private long id;
@@ -10,6 +11,7 @@ public class Destination {
 	private String description;
 	private int deleted;
 	private List<DatesVoyages> dates =new ArrayList<DatesVoyages>();
+	private List<Image> images=new ArrayList<Image>();
 
 	public Destination() {
 	}
@@ -65,6 +67,14 @@ public class Destination {
 
 	public void setDates(List<DatesVoyages> dates) {
 		this.dates = dates;
+	}
+	
+	public List<Image> getImage() {
+		return images;
+	}
+
+	public void setImage(List<Image> image) {
+		this.images = image;
 	}
 	
 }
