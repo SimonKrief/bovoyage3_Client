@@ -30,7 +30,22 @@ public class Test {
 		String[] regions = target.request("application/json;charset=utf-8").get(String[].class);
 		assertTrue("test 1", regions.length > 0);
 		assertEquals("test 2", "Birmanie", regions[0]);
-		assertEquals("test 2", "Canada", regions[1]);
+		assertEquals("test 3", "Canada", regions[1]);
+	}
+	
+	@org.junit.Test
+	public void test_allDestinationsValides() {
+		String uri = WEB_APPLI+"/destinations/allDestinationsValides";
+		Client client = ClientBuilder.newClient();
+		WebTarget target = client.target(uri);
+		Destination[] destinations = target.request("application/json;charset=utf-8").get(Destination[].class);
+		boolean estAbsent = true;
+		for(Destination d : destinations) {
+			if(d.getRegion().equals("Haïti")) {
+				estAbsent = false;
+			}
+		}
+		assertTrue(estAbsent);
 	}
 
 }
