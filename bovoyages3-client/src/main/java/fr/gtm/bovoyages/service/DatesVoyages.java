@@ -22,6 +22,8 @@ public class DatesVoyages  implements java.io.Serializable {
 
     private float prixHT;
 
+    private int promotion;
+
     public DatesVoyages() {
     }
 
@@ -32,7 +34,8 @@ public class DatesVoyages  implements java.io.Serializable {
            long fkDestination,
            long id,
            int nbPlaces,
-           float prixHT) {
+           float prixHT,
+           int promotion) {
            this.dateDepart = dateDepart;
            this.dateRetour = dateRetour;
            this.deleted = deleted;
@@ -40,6 +43,7 @@ public class DatesVoyages  implements java.io.Serializable {
            this.id = id;
            this.nbPlaces = nbPlaces;
            this.prixHT = prixHT;
+           this.promotion = promotion;
     }
 
 
@@ -182,6 +186,26 @@ public class DatesVoyages  implements java.io.Serializable {
         this.prixHT = prixHT;
     }
 
+
+    /**
+     * Gets the promotion value for this DatesVoyages.
+     * 
+     * @return promotion
+     */
+    public int getPromotion() {
+        return promotion;
+    }
+
+
+    /**
+     * Sets the promotion value for this DatesVoyages.
+     * 
+     * @param promotion
+     */
+    public void setPromotion(int promotion) {
+        this.promotion = promotion;
+    }
+
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
         if (!(obj instanceof DatesVoyages)) return false;
@@ -204,7 +228,8 @@ public class DatesVoyages  implements java.io.Serializable {
             this.fkDestination == other.getFkDestination() &&
             this.id == other.getId() &&
             this.nbPlaces == other.getNbPlaces() &&
-            this.prixHT == other.getPrixHT();
+            this.prixHT == other.getPrixHT() &&
+            this.promotion == other.getPromotion();
         __equalsCalc = null;
         return _equals;
     }
@@ -227,6 +252,7 @@ public class DatesVoyages  implements java.io.Serializable {
         _hashCode += new Long(getId()).hashCode();
         _hashCode += getNbPlaces();
         _hashCode += new Float(getPrixHT()).hashCode();
+        _hashCode += getPromotion();
         __hashCodeCalc = false;
         return _hashCode;
     }
@@ -279,6 +305,12 @@ public class DatesVoyages  implements java.io.Serializable {
         elemField.setFieldName("prixHT");
         elemField.setXmlName(new javax.xml.namespace.QName("", "prixHT"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "float"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("promotion");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "promotion"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
     }
