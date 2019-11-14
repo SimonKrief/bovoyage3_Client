@@ -21,5 +21,16 @@ public class Test {
 		assertTrue("test 1", destinations.length > 0);
 		assertEquals("test 2", "Birmanie", destinations[0].getRegion());
 	}
+	
+	@org.junit.Test
+	public void test_allRegions() {
+		String uri = WEB_APPLI+"/destinations/allRegions";
+		Client client = ClientBuilder.newClient();
+		WebTarget target = client.target(uri);
+		String[] regions = target.request("application/json;charset=utf-8").get(String[].class);
+		assertTrue("test 1", regions.length > 0);
+		assertEquals("test 2", "Birmanie", regions[0]);
+		assertEquals("test 2", "Canada", regions[1]);
+	}
 
 }
