@@ -4,8 +4,11 @@ import static org.junit.Assert.*;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 
+import fr.gtm.bo.DatesVoyages;
 import fr.gtm.bo.Destination;
 
 public class Test {
@@ -46,6 +49,20 @@ public class Test {
 			}
 		}
 		assertTrue(estAbsent);
+	}
+	
+	@org.junit.Test
+	public void test_allDatesVoyagesValidesDeDestination() {
+		String uri = WEB_APPLI+"/destinations/allDestinationsValides";
+		Client client = ClientBuilder.newClient();
+		WebTarget target = client.target(uri);
+		Destination[] destinations = target.request("application/json;charset=utf-8").get(Destination[].class);
+		uri = WEB_APPLI+"/destinations/allDatesVoyagesValidesDeDestination/1";
+		target = client.target(uri);
+//		DatesVoyages[] datesVoyages = new DatesVoyages[3] ;
+		DatesVoyages[] datesVoyages = target.request(MediaType.APPLICATION_JSON).get(DatesVoyages[].class);
+		assertTrue("test 1", datesVoyages.length > 0);
+		assertTrue("test 2", datesVoyages.length == 3);
 	}
 
 }

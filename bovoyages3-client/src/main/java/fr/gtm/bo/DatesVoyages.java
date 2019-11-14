@@ -1,11 +1,18 @@
 package fr.gtm.bo;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
-public class DatesVoyages {
+//import com.fasterxml.jackson.annotation.JsonFormat;
+
+public class DatesVoyages implements Serializable{
 
 	private long id;
+//	@JsonFormat(pattern="yyyy-MM-ddTHH:mm:ss.SSSZ")	
 	private Date dateDepart;
+//	@JsonFormat(pattern="yyyy-MM-ddTHH:mm:ss.SSSZ")
 	private Date dateRetour;
 	private float prixHT;
 	private int deleted;
