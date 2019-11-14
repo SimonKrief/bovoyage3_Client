@@ -1,30 +1,42 @@
 package fr.gtm.bo;
 
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
-public class DatesVoyages {
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import fr.gtm.util.LocalDateXmlAdapter;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+public class DatesVoyages implements Serializable{
 
 	private long id;
-	private Date dateDepart;
-	private Date dateRetour;
+	@XmlJavaTypeAdapter(LocalDateXmlAdapter.class)
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
+	private LocalDate dateDepart;
+	@XmlJavaTypeAdapter(LocalDateXmlAdapter.class)
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
+	private LocalDate dateRetour;
 	private float prixHT;
 	private int deleted;
 	private int nbPlaces;
 	private long fkDestination;
 	
 	public DatesVoyages() {}
-
-	public DatesVoyages(Date dateDepart, Date dateRetour, float prixHT, int deleted, int nbPlaces,
-			long fkDestination) {
-		super();
-		this.dateDepart = dateDepart;
-		this.dateRetour = dateRetour;
-		this.prixHT = prixHT;
-		this.deleted = deleted;
-		this.nbPlaces = nbPlaces;
-		this.fkDestination = fkDestination;
-	}
-
 	
 	public long getId() {
 		return id;
@@ -34,19 +46,19 @@ public class DatesVoyages {
 		this.id = id;
 	}
 
-	public Date getDateDepart() {
+	public LocalDate getDateDepart() {
 		return dateDepart;
 	}
 
-	public void setDateDepart(Date dateDepart) {
+	public void setDateDepart(LocalDate dateDepart) {
 		this.dateDepart = dateDepart;
 	}
 
-	public Date getDateRetour() {
+	public LocalDate getDateRetour() {
 		return dateRetour;
 	}
 
-	public void setDateRetour(Date dateRetour) {
+	public void setDateRetour(LocalDate dateRetour) {
 		this.dateRetour = dateRetour;
 	}
 
