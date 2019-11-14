@@ -35,6 +35,7 @@ public class DatesVoyages implements Serializable{
 	private int deleted;
 	private int nbPlaces;
 	private long fkDestination;
+	private long promotion;
 	
 	public DatesVoyages() {}
 	
@@ -92,6 +93,14 @@ public class DatesVoyages implements Serializable{
 
 	public void setFkDestination(long fkDestination) {
 		this.fkDestination = fkDestination;
+	}
+
+	public long getPromotion() {
+		return promotion;
+	}
+
+	public void setPromotion(long promotion) {
+		this.promotion = promotion;
 	}
 
 }
