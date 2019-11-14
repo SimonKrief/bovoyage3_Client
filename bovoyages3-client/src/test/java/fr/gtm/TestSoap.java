@@ -2,24 +2,43 @@ package fr.gtm;
 
 import static org.junit.Assert.*;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
+import java.rmi.RemoteException;
+import java.util.List;
 
+import javax.xml.rpc.ServiceException;
+
+import org.junit.Test;
+
+import fr.gtm.bo.DatesVoyages;
 import fr.gtm.bo.Destination;
+import fr.gtm.bovoyages.service.BoVoyagesService;
+import fr.gtm.bovoyages.service.BoVoyagesServiceServiceLocator;
+import fr.gtm.bovoyages.service.DestinationDTO;
 
 public class TestSoap {
-
-	private static final String WEB_APPLI = "http://localhost:9080/bovoyages3/rest";
 	
-	@org.junit.Test
-	public void test_all() {
-		String uri = WEB_APPLI+"/destinations/all";
-		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target(uri);
-		Destination[] destinations = target.request("application/json;charset=utf-8").get(Destination[].class);
-		assertTrue("test 1", destinations.length > 0);
-		assertEquals("test 2", "Birmanie", destinations[0].getRegion());
+	
+
+	@Test
+	public void testGetDestinations() throws ServiceException, RemoteException {
+		BoVoyagesService service = new BoVoyagesServiceServiceLocator().getBoVoyagesServicePort();
+		DestinationDTO[] d = service.getAllDestinations();
+		assertFalse(d.length==0);
 	}
+
+	@Test
+	public void testGetDatesVoyages() throws ServiceException, RemoteException {
+		BoVoyagesService service = new BoVoyagesServiceServiceLocator().getBoVoyagesServicePort();
+		fr.gtm.bovoyages.service.DatesVoyages[] d = service.getAllDatesVoyages();
+		assertFalse(d.length==0);
+	}
+	@Test
+	public void testGetDatesVoyagesPromotion() throws ServiceException, RemoteException {
+		BoVoyagesService service = new BoVoyagesServiceServiceLocator().getBoVoyagesServicePort();
+		fr.gtm.bovoyages.service.DestinationDTO[] d = service.getAllDestinationsDatesPromotion();
+		assertFalse(d.length==0);
+		assertTrue(d.length==1);
+	}
+	
 
 }
