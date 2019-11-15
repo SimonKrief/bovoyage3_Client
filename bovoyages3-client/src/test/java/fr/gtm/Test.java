@@ -243,6 +243,31 @@ public class Test {
 		boolean bool = target.request("application/json;charset=utf-8").post(Entity.entity(voyage, MediaType.APPLICATION_JSON), boolean.class);// requete au web service puis recuperation du resultat, renvoie true si le nombre de passage le permettait et false sinon
 		assertTrue("test 1", bool);//  test si le voyage a ete commander
 	}
+//  test permettant de savoir si l'on commande se fait pas si pas réglo
+	@org.junit.Test
+	public void test_commande_Voyage_creer_par_client_rejete() {
+		String uri = WEB_APPLI+"/destinations/commandeVoyage";//  ajout de la partie manquante de l'uri permettant de chercher le bon web service
+		Client client = ClientBuilder.newClient();//              creation d'un client pour interroger le serveur
+		WebTarget target = client.target(uri);//                  creation de la cible du client à travers l'uri definie precedemment
+		Voyage voyage = new Voyage();//                           declaration d'une instance d'un voyage que l'on va commander
+		voyage.setRegion("France");//                             definition de la region
+		voyage.setDescriptif("Ze pays");//                        definition du descriptif
+		voyage.setFkClient(1);//                                  definition du client
+		Voyageur voyageur = new Voyageur();//                     declaration d'une instance du voyageur du voyage que l'on souhaite commander
+		voyageur.setCivilite("M");//                              definition de la civilite du voyageur du voyage que l'on souhaite commander
+		voyageur.setNom("Durand");//                              definition du nom du voyageur du voyage que l'on souhaite commander
+		voyageur.setPrenom("Michel");//                           definition du prenom du voyageur du voyage que l'on souhaite commander
+		List<Voyageur> voyageurs = new ArrayList<Voyageur>();//   definition de la liste de voyageur du voyage du voyage que l'on souhaite commander
+		voyageurs.add(voyageur);//                                ajout du voyageur à liste des voyageurs du voyage du voyage que l'on souhaite commander
+		for(int i = 0 ; i< 10 ; i++) {
+			voyageurs.add(voyageur);
+		}
+		voyage.setParticipants(voyageurs);//                      definition de liste de voyageur du voyage que l'on veut commander
+		voyage.setFk_dates_voyages(3);//                          definition de la date du voyage que l'on souhaite commander
+		voyage.setFkClient(1);//                                  definitino du client qui passe la commande 
+		boolean bool = target.request("application/json;charset=utf-8").post(Entity.entity(voyage, MediaType.APPLICATION_JSON), boolean.class);// requete au web service puis recuperation du resultat, renvoie true si le nombre de passage le permettait et false sinon
+		assertFalse("test 1", bool);//  test si le voyage a ete commander
+	}
 //////
 	
 	/**

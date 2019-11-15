@@ -10,11 +10,15 @@ import javax.xml.rpc.ServiceException;
 
 import org.junit.Test;
 
-import fr.gtm.bo.DatesVoyages;
-import fr.gtm.bo.Destination;
 import fr.gtm.bovoyages.service.BoVoyagesService;
 import fr.gtm.bovoyages.service.BoVoyagesServiceServiceLocator;
 import fr.gtm.bovoyages.service.DestinationDTO;
+
+import fr.gtm.bovoyages.service.DatesVoyages;
+import fr.gtm.bovoyages.service.DestinationDTO;
+import fr.gtm.bovoyages.service.VoyageDTO;
+import fr.gtm.bovoyages.service.Voyageur;
+
 
 public class TestSOAP {
 	
@@ -42,13 +46,13 @@ public class TestSOAP {
 	@Test
 	public void testGetDatesVoyages() throws ServiceException, RemoteException {
 		BoVoyagesService service = new BoVoyagesServiceServiceLocator().getBoVoyagesServicePort();
-		fr.gtm.bovoyages.service.DatesVoyages[] d = service.getAllDatesVoyages();
+		DatesVoyages[] d = service.getAllDatesVoyages();
 		assertFalse(d.length==0);
 	}
 	@Test
 	public void testGetDatesVoyagesPromotion() throws ServiceException, RemoteException {
 		BoVoyagesService service = new BoVoyagesServiceServiceLocator().getBoVoyagesServicePort();
-		fr.gtm.bovoyages.service.DestinationDTO[] d = service.getAllDestinationsDatesPromotion();
+		DestinationDTO[] d = service.getAllDestinationsDatesPromotion();
 		assertFalse(d.length==0);
 		assertTrue(d.length==1);
 	}
@@ -93,17 +97,17 @@ public class TestSOAP {
 	@Test
 	public void testCommandeVoyage() throws ServiceException, RemoteException {
 		BoVoyagesService service = new BoVoyagesServiceServiceLocator().getBoVoyagesServicePort();
-		fr.gtm.bovoyages.service.VoyageDTO voyage = new fr.gtm.bovoyages.service.VoyageDTO();
+		VoyageDTO voyage = new VoyageDTO();
 		voyage.setRegion("France");
 		voyage.setDescriptif("Meilleur Pays");
 		voyage.setFkClient(1);
-		fr.gtm.bovoyages.service.Voyageur voyageur = new fr.gtm.bovoyages.service.Voyageur();
+		Voyageur voyageur = new fr.gtm.bovoyages.service.Voyageur();
 		voyageur.setCivilite("M");
 		voyageur.setNom("Dupont");
 		voyageur.setPrenom("Jean");
-		List<fr.gtm.bovoyages.service.Voyageur> voyageurs = new ArrayList<fr.gtm.bovoyages.service.Voyageur>();
+		List<Voyageur> voyageurs = new ArrayList<Voyageur>();
 		voyageurs.add(voyageur);
-		fr.gtm.bovoyages.service.Voyageur[] voyageursTab = new fr.gtm.bovoyages.service.Voyageur[voyageurs.size()];
+		Voyageur[] voyageursTab = new Voyageur[voyageurs.size()];
 		voyageursTab[0] = voyageur;
 		voyage.setParticipants(voyageursTab);
 		voyage.setFk_dates_voyages(2);
