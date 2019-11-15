@@ -18,7 +18,12 @@ import fr.gtm.bovoyages.service.DestinationDTO;
 
 public class TestSOAP {
 	
-	
+	/**
+	 * Test de la récupération des destinations.
+	 * @see DestinationDTO
+	 * @throws ServiceException
+	 * @throws RemoteException
+	 */
 
 	@Test
 	public void testGetDestinations() throws ServiceException, RemoteException {
@@ -26,6 +31,13 @@ public class TestSOAP {
 		DestinationDTO[] d = service.getAllDestinations();
 		assertFalse(d.length==0);
 	}
+	
+	/**
+	 * Test de la récupération des dates de voyage.
+	 * @see DatesVoyages
+	 * @throws ServiceException
+	 * @throws RemoteException
+	 */
 
 	@Test
 	public void testGetDatesVoyages() throws ServiceException, RemoteException {
@@ -33,6 +45,14 @@ public class TestSOAP {
 		fr.gtm.bovoyages.service.DatesVoyages[] d = service.getAllDatesVoyages();
 		assertFalse(d.length==0);
 	}
+	
+	/**
+	 * Test de la récupération des destinations avec des dates de voyage en promotion.
+	 * @see DestinationDTO
+	 * @throws ServiceException
+	 * @throws RemoteException
+	 */
+	
 	@Test
 	public void testGetDatesVoyagesPromotion() throws ServiceException, RemoteException {
 		BoVoyagesService service = new BoVoyagesServiceServiceLocator().getBoVoyagesServicePort();
@@ -60,6 +80,16 @@ public class TestSOAP {
 //		fr.gtm.bovoyages.service.VoyageDTO v = service.creationVoyage(voyage);
 //		assertEquals("test 1", "France", v.getRegion());
 //	}
+	
+	/**
+	 * 
+	 * Permet de tester la Commande d'un voyage, on
+	 * appelle indirectement la commande CommandeVoyage
+	 * de la DAO qui revoie un booleen. 
+	 * @see VoyageDTO
+	 * @throws ServiceException
+	 * @throws RemoteException
+	 */
 	
 	@Test
 	public void testCommandeVoyage() throws ServiceException, RemoteException {

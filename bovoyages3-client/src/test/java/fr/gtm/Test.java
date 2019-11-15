@@ -22,9 +22,19 @@ import fr.gtm.bo.DatesVoyages;
 
 
 public class Test {
-
+/**
+ * La racine de l'url de l'API est "http://localhost:9080/bovoyages3/rest"
+ * 
+ */
 	private static final String WEB_APPLI = "http://localhost:9080/bovoyages3/rest";
 	
+	/**
+	 * @see Destination
+	 * Test de la récupération de toutes les destinations
+	 * les destinations sont récupérées sous forme de tableaux
+	 * Il faut ajouter "/destinations/all" à la racine de l'URL.
+	 * 
+	 */
 	@org.junit.Test
 	public void test_all() {
 		String uri = WEB_APPLI+"/destinations/all";
@@ -35,6 +45,12 @@ public class Test {
 		assertEquals("test 2", "Birmanie", destinations[0].getRegion());
 	}
 	
+	/**
+	 * Test de la récupération de toutes les régions
+	 * les régions sont récupérées sous forme de tableaux
+	 * Il faut ajouter "/destinations/allRegions" à la racine de l'URL.
+	 * 
+	 */
 	@org.junit.Test
 	public void test_allRegions() {
 		String uri = WEB_APPLI+"/destinations/allRegions";
@@ -46,6 +62,13 @@ public class Test {
 		assertEquals("test 3", "Canada", regions[1]);
 	}
 	
+	/**
+	 * @see Destination
+	 * Test de la récupération de toutes les destinations qui n'ont pas été supprimées (deleted).
+	 * les destinations sont récupérées sous forme de tableaux
+	 * Il faut ajouter "/destinations/allDestinationsValides" à la racine de l'URL.
+	 * 
+	 */
 	@org.junit.Test
 	public void test_allDestinationsValides() {
 		String uri = WEB_APPLI+"/destinations/allDestinationsValides";
@@ -97,6 +120,13 @@ public class Test {
 //		assertEquals("test 1", "Le pays du fromage", voyageReponse.getDescriptif());
 //	}
 	
+	/**
+	 * @see ClientDTO
+	 * Test de l'ajout d'un client.
+	 * Il faut ajouter "/destinations/addClientVoyage/{id}" à la racine de l'URL.
+	 * L'{id} à préciser est un nombre qui correspond à l'identifiant du client. 
+	 */
+	
 	@org.junit.Test
 	public void test_Ajout_Client_Voyage() {
 		String uri = WEB_APPLI+"/destinations/addClientVoyage/1";
@@ -124,6 +154,13 @@ public class Test {
 //		assertEquals("test 1", "Dupuit", voyageursReponse[1].getNom());
 //	}
 	
+	
+	/**
+	 * @see Destination
+	 * Test de la récupération dates de voyages d'une destination (celles qui ne sont pas rayées)
+	 * Il faut ajouter "/destinations/allDestinationsValides" à la racine de l'URL.
+	 * Les dates voyages sont envoyées sous forme de tableau.
+	 */
 	@org.junit.Test
 	public void test_allDatesVoyagesValidesDeDestination() {
 		String uri = WEB_APPLI+"/destinations/allDestinationsValides";
@@ -138,6 +175,12 @@ public class Test {
 		assertTrue("test 2", datesVoyages.length == 3);
 	}	
 	
+	/**
+	 * @see Voyage
+	 * Test de la création d'une commande
+	 * Il faut ajouter "/destinations/commandeVoyageEnregistre/{id}" à la racine de l'URL.
+	 * L'{id} à préciser est celle du client.
+	 */
 	@org.junit.Test
 	public void test_commande_Voyage_en_base() {
 		String uri = WEB_APPLI+"/destinations/commandeVoyageEnregistre/1";
@@ -159,6 +202,13 @@ public class Test {
 		assertTrue("test 1", bool);
 	}
 	
+	/*
+	 * @see Voyage
+	 * Test de la commande d'un voyage.
+	 * Il faut ajouter "/destinations/commandeVoyage" à la racine de l'URL.
+	 * La DAO revoie un booleen, on vérifie (indirectement) que ce boolen est : True.
+	 */
+	
 	@org.junit.Test
 	public void test_commande_Voyage_creer_par_client() {
 		String uri = WEB_APPLI+"/destinations/commandeVoyage";
@@ -178,8 +228,16 @@ public class Test {
 		voyage.setFk_dates_voyages(3);
 		voyage.setFkClient(1);
 		boolean bool = target.request("application/json;charset=utf-8").post(Entity.entity(voyage, MediaType.APPLICATION_JSON), boolean.class);
-		assertTrue("test 1", bool);
+		assertTrue("test 1", bool); 
 	}
+	
+	/**
+	 * @see Voyageur
+	 * Test de la modification d'un voyageur
+	 * Il faut ajouter "/destinations/updateVoyageurDeVoyage/{id}" à la racine de l'URL.
+	 * L'{id} à préciser est celle du voyageur.
+	 * 
+	 */
 	
 	@org.junit.Test
 	public void test_MAJ_Voyageur_De_Voyage() {
