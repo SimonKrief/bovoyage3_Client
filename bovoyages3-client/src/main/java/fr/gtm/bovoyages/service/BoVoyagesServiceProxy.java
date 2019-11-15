@@ -74,5 +74,11 @@ public class BoVoyagesServiceProxy implements fr.gtm.bovoyages.service.BoVoyages
     return boVoyagesService.creationVoyage(arg0);
   }
   
+  public boolean commandeVoyage(fr.gtm.bovoyages.service.VoyageDTO arg0) throws java.rmi.RemoteException{
+    if (boVoyagesService == null)
+      _initBoVoyagesServiceProxy();
+    return boVoyagesService.commandeVoyage(arg0);
+  }
+  
   
 }

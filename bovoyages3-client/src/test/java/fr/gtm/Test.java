@@ -147,7 +147,6 @@ public class Test {
 		voyageur.setNom("Dupuit");
 		voyageur.setPrenom("Robert");
 //		LocalDate date = LocalDate.of(2000, Month.DECEMBER, 12);
-//		voyageur.setDateNaissance(date.format(DateTimeFormatter.ofPattern("YYYY-MM-DD")));
 //		voyageur.setDateNaissance(date);
 		Voyage voyageReponse = target.request("application/json;charset=utf-8").post(Entity.entity(voyageur, MediaType.APPLICATION_JSON), Voyage.class);
 		voyageur.setNom("Dupond");
