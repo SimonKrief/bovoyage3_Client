@@ -16,7 +16,7 @@ public class BoVoyagesServiceServiceSoapBindingStub extends org.apache.axis.clie
     static org.apache.axis.description.OperationDesc [] _operations;
 
     static {
-        _operations = new org.apache.axis.description.OperationDesc[3];
+        _operations = new org.apache.axis.description.OperationDesc[5];
         _initOperationDesc1();
     }
 
@@ -24,13 +24,22 @@ public class BoVoyagesServiceServiceSoapBindingStub extends org.apache.axis.clie
         org.apache.axis.description.OperationDesc oper;
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("getVoyageur");
+        oper.setReturnType(new javax.xml.namespace.QName("http://service.bovoyages.gtm.fr/", "voyageur"));
+        oper.setReturnClass(fr.gtm.bovoyages.service.Voyageur.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[0] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getAllDatesVoyages");
         oper.setReturnType(new javax.xml.namespace.QName("http://service.bovoyages.gtm.fr/", "datesVoyages"));
         oper.setReturnClass(fr.gtm.bovoyages.service.DatesVoyages[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[0] = oper;
+        _operations[1] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getAllDestinations");
@@ -39,7 +48,7 @@ public class BoVoyagesServiceServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[1] = oper;
+        _operations[2] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getAllDestinationsDatesPromotion");
@@ -48,7 +57,19 @@ public class BoVoyagesServiceServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[2] = oper;
+        _operations[3] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("creationVoyage");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://service.bovoyages.gtm.fr/", "voyageDTO"), fr.gtm.bovoyages.service.VoyageDTO.class, false, false);
+        param.setOmittable(true);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://service.bovoyages.gtm.fr/", "voyageDTO"));
+        oper.setReturnClass(fr.gtm.bovoyages.service.VoyageDTO.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[4] = oper;
 
     }
 
@@ -98,6 +119,27 @@ public class BoVoyagesServiceServiceSoapBindingStub extends org.apache.axis.clie
             qName = new javax.xml.namespace.QName("http://service.bovoyages.gtm.fr/", "image");
             cachedSerQNames.add(qName);
             cls = fr.gtm.bovoyages.service.Image.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://service.bovoyages.gtm.fr/", "localDate");
+            cachedSerQNames.add(qName);
+            cls = fr.gtm.bovoyages.service.LocalDate.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://service.bovoyages.gtm.fr/", "voyageDTO");
+            cachedSerQNames.add(qName);
+            cls = fr.gtm.bovoyages.service.VoyageDTO.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://service.bovoyages.gtm.fr/", "voyageur");
+            cachedSerQNames.add(qName);
+            cls = fr.gtm.bovoyages.service.Voyageur.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -168,12 +210,46 @@ public class BoVoyagesServiceServiceSoapBindingStub extends org.apache.axis.clie
         }
     }
 
-    public fr.gtm.bovoyages.service.DatesVoyages[] getAllDatesVoyages() throws java.rmi.RemoteException {
+    public fr.gtm.bovoyages.service.Voyageur getVoyageur() throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
         _call.setOperation(_operations[0]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://service.bovoyages.gtm.fr/", "getVoyageur"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (fr.gtm.bovoyages.service.Voyageur) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (fr.gtm.bovoyages.service.Voyageur) org.apache.axis.utils.JavaUtils.convert(_resp, fr.gtm.bovoyages.service.Voyageur.class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public fr.gtm.bovoyages.service.DatesVoyages[] getAllDatesVoyages() throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[1]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -207,7 +283,7 @@ public class BoVoyagesServiceServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[1]);
+        _call.setOperation(_operations[2]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -241,7 +317,7 @@ public class BoVoyagesServiceServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[2]);
+        _call.setOperation(_operations[3]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("");
         _call.setEncodingStyle(null);
@@ -263,6 +339,40 @@ public class BoVoyagesServiceServiceSoapBindingStub extends org.apache.axis.clie
                 return (fr.gtm.bovoyages.service.DestinationDTO[]) _resp;
             } catch (java.lang.Exception _exception) {
                 return (fr.gtm.bovoyages.service.DestinationDTO[]) org.apache.axis.utils.JavaUtils.convert(_resp, fr.gtm.bovoyages.service.DestinationDTO[].class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public fr.gtm.bovoyages.service.VoyageDTO creationVoyage(fr.gtm.bovoyages.service.VoyageDTO arg0) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[4]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://service.bovoyages.gtm.fr/", "creationVoyage"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {arg0});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (fr.gtm.bovoyages.service.VoyageDTO) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (fr.gtm.bovoyages.service.VoyageDTO) org.apache.axis.utils.JavaUtils.convert(_resp, fr.gtm.bovoyages.service.VoyageDTO.class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {

@@ -8,9 +8,9 @@
 package fr.gtm.bovoyages.service;
 
 public class DatesVoyages  implements java.io.Serializable {
-    private java.util.Calendar dateDepart;
+    private fr.gtm.bovoyages.service.LocalDate dateDepart;
 
-    private java.util.Calendar dateRetour;
+    private fr.gtm.bovoyages.service.LocalDate dateRetour;
 
     private int deleted;
 
@@ -22,20 +22,20 @@ public class DatesVoyages  implements java.io.Serializable {
 
     private float prixHT;
 
-    private int promotion;
+    private long promotion;
 
     public DatesVoyages() {
     }
 
     public DatesVoyages(
-           java.util.Calendar dateDepart,
-           java.util.Calendar dateRetour,
+           fr.gtm.bovoyages.service.LocalDate dateDepart,
+           fr.gtm.bovoyages.service.LocalDate dateRetour,
            int deleted,
            long fkDestination,
            long id,
            int nbPlaces,
            float prixHT,
-           int promotion) {
+           long promotion) {
            this.dateDepart = dateDepart;
            this.dateRetour = dateRetour;
            this.deleted = deleted;
@@ -52,7 +52,7 @@ public class DatesVoyages  implements java.io.Serializable {
      * 
      * @return dateDepart
      */
-    public java.util.Calendar getDateDepart() {
+    public fr.gtm.bovoyages.service.LocalDate getDateDepart() {
         return dateDepart;
     }
 
@@ -62,7 +62,7 @@ public class DatesVoyages  implements java.io.Serializable {
      * 
      * @param dateDepart
      */
-    public void setDateDepart(java.util.Calendar dateDepart) {
+    public void setDateDepart(fr.gtm.bovoyages.service.LocalDate dateDepart) {
         this.dateDepart = dateDepart;
     }
 
@@ -72,7 +72,7 @@ public class DatesVoyages  implements java.io.Serializable {
      * 
      * @return dateRetour
      */
-    public java.util.Calendar getDateRetour() {
+    public fr.gtm.bovoyages.service.LocalDate getDateRetour() {
         return dateRetour;
     }
 
@@ -82,7 +82,7 @@ public class DatesVoyages  implements java.io.Serializable {
      * 
      * @param dateRetour
      */
-    public void setDateRetour(java.util.Calendar dateRetour) {
+    public void setDateRetour(fr.gtm.bovoyages.service.LocalDate dateRetour) {
         this.dateRetour = dateRetour;
     }
 
@@ -192,7 +192,7 @@ public class DatesVoyages  implements java.io.Serializable {
      * 
      * @return promotion
      */
-    public int getPromotion() {
+    public long getPromotion() {
         return promotion;
     }
 
@@ -202,7 +202,7 @@ public class DatesVoyages  implements java.io.Serializable {
      * 
      * @param promotion
      */
-    public void setPromotion(int promotion) {
+    public void setPromotion(long promotion) {
         this.promotion = promotion;
     }
 
@@ -252,7 +252,7 @@ public class DatesVoyages  implements java.io.Serializable {
         _hashCode += new Long(getId()).hashCode();
         _hashCode += getNbPlaces();
         _hashCode += new Float(getPrixHT()).hashCode();
-        _hashCode += getPromotion();
+        _hashCode += new Long(getPromotion()).hashCode();
         __hashCodeCalc = false;
         return _hashCode;
     }
@@ -266,14 +266,14 @@ public class DatesVoyages  implements java.io.Serializable {
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("dateDepart");
         elemField.setXmlName(new javax.xml.namespace.QName("", "dateDepart"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://service.bovoyages.gtm.fr/", "localDate"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("dateRetour");
         elemField.setXmlName(new javax.xml.namespace.QName("", "dateRetour"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://service.bovoyages.gtm.fr/", "localDate"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -310,7 +310,7 @@ public class DatesVoyages  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("promotion");
         elemField.setXmlName(new javax.xml.namespace.QName("", "promotion"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
     }
