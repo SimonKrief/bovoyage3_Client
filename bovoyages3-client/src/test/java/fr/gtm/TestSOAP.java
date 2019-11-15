@@ -78,7 +78,6 @@ public class TestSOAP {
 		voyageursTab[0] = voyageur;
 		voyage.setParticipants(voyageursTab);
 		voyage.setFk_dates_voyages(2);
-//		fr.gtm.bovoyages.service.VoyageDTO v = service.commandeVoyage(voyage);
 		boolean b = service.commandeVoyage(voyage);
 		assertTrue(b);
 	}

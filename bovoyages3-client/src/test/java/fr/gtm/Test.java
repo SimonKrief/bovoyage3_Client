@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -108,7 +110,7 @@ public class Test {
 	}
 	
 //	@org.junit.Test
-//	public void test_Ajout_Voyageur_A_Voyageur() {
+//	public void test_Ajout_Voyageur_A_Voyage() {
 //		String uri = WEB_APPLI+"/destinations/addVoyageurAVoyage/1";
 //		Client client = ClientBuilder.newClient();
 //		WebTarget target = client.target(uri);
@@ -137,6 +139,49 @@ public class Test {
 	}	
 	
 	@org.junit.Test
+	public void test_commande_Voyage_en_base() {
+		String uri = WEB_APPLI+"/destinations/commandeVoyageEnregistre/1";
+		Client client = ClientBuilder.newClient();
+		WebTarget target = client.target(uri);
+		Voyage voyage = new Voyage();
+		voyage.setRegion("France");
+		voyage.setDescriptif("Ze pays");
+		voyage.setFkClient(1);
+		Voyageur voyageur = new Voyageur();
+		voyageur.setCivilite("M");
+		voyageur.setNom("Durand");
+		voyageur.setPrenom("Michel");
+		List<Voyageur> voyageurs = new ArrayList<Voyageur>();
+		voyageurs.add(voyageur);
+		voyage.setParticipants(voyageurs);
+		voyage.setFk_dates_voyages(3);
+		boolean bool = target.request("application/json;charset=utf-8").post(Entity.entity(voyage, MediaType.APPLICATION_JSON), boolean.class);
+		assertTrue("test 1", bool);
+	}
+	
+	@org.junit.Test
+	public void test_commande_Voyage_creer_par_client() {
+		String uri = WEB_APPLI+"/destinations/commandeVoyage";
+		Client client = ClientBuilder.newClient();
+		WebTarget target = client.target(uri);
+		Voyage voyage = new Voyage();
+		voyage.setRegion("France");
+		voyage.setDescriptif("Ze pays");
+		voyage.setFkClient(1);
+		Voyageur voyageur = new Voyageur();
+		voyageur.setCivilite("M");
+		voyageur.setNom("Durand");
+		voyageur.setPrenom("Michel");
+		List<Voyageur> voyageurs = new ArrayList<Voyageur>();
+		voyageurs.add(voyageur);
+		voyage.setParticipants(voyageurs);
+		voyage.setFk_dates_voyages(3);
+		voyage.setFkClient(1);
+		boolean bool = target.request("application/json;charset=utf-8").post(Entity.entity(voyage, MediaType.APPLICATION_JSON), boolean.class);
+		assertTrue("test 1", bool);
+	}
+	
+	@org.junit.Test
 	public void test_MAJ_Voyageur_De_Voyage() {
 		String uri = WEB_APPLI+"/destinations/updateVoyageurDeVoyage/1";
 		Client client = ClientBuilder.newClient();
@@ -152,6 +197,8 @@ public class Test {
 		voyageur.setNom("Dupond");
 		voyageReponse = target.request("application/json;charset=utf-8").post(Entity.entity(voyageur, MediaType.APPLICATION_JSON), Voyage.class);
 		assertEquals("test 1", "Dupond", voyageReponse.getParticipants().get(1).getNom());
+		voyageur.setNom("Dupuit");
+		target.request("application/json;charset=utf-8").post(Entity.entity(voyageur, MediaType.APPLICATION_JSON), Voyage.class);
 	}
 
 }
